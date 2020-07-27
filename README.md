@@ -10,6 +10,7 @@ Today, you are in charge of maintaining some of the zoos in NYC and the animals 
 Here are some notes for you to keep in mind when building out this lab:
 When the lab mentions
 > Consider which higher-level enumerable method(s) you'd use here.
+
 You should consider using the methods that aren't `each`.
 
 ### Array
