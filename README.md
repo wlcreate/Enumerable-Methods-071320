@@ -29,7 +29,7 @@ Here are some notes for you to keep in mind when building out this lab:
   - Returns: A new array filled with elements satisfying the condition on the last line of your block
   - Note:
     - Will always return a sub-array of the original array
-    - If nothing satisfies the condition, will return []
+    - If nothing satisfies the condition, will return `[]`
     
 - `find`:
   - Block parameter: Single element of the array
@@ -59,7 +59,7 @@ Here are some notes for you to keep in mind when building out this lab:
   - Returns: A new hash filled with key-value pairs satisfying the condition on the last line of your block
   - Note:
     - Will always return a sub-hash of the original
-    - If nothing satisfies the condition, will return {}
+    - If nothing satisfies the condition, will return `{}`
     
 - `find`:
   - Block parameter: First is the key, second is the value
