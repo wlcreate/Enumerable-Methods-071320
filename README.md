@@ -9,7 +9,7 @@ Today, you are in charge of maintaining some of the zoos in NYC and the animals 
 
 Here are some notes for you to keep in mind when building out this lab:
 
-For an array - 
+### Array
 
 - `each`:
   - Block parameter: Single element of the array
@@ -39,8 +39,7 @@ For an array -
     - Will return one element of the original array
     - If nothing satisfies the condition, will return `nil`
     
- 
- For a hash - 
+### Hash
  
  - `each`:
   - Block parameter: First is the key, second is the value
