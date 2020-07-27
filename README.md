@@ -41,7 +41,7 @@ Here are some notes for you to keep in mind when building out this lab:
     
 ### Hash
  
- - `each`:
+- `each`:
   - Block parameter: First is the key, second is the value
   - Block: You can do whatever in the block 
   - Returns: The hash you're iterating over
