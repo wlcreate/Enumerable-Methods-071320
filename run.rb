@@ -64,7 +64,7 @@ zoos = {
 # Put this hash: { species: "Wolf", count: 4 } in the array under the `:animals` key in Central Park Zoo
 
 
-
+zoos["Central Park Zoo"][:animals] << { species: "Wolf", count: 4 } 
 
 
 # The 2 penguins in the Bronx Zoo just had a baby. Alter the `zoos` information to reflect this new change:
@@ -72,14 +72,16 @@ zoos = {
 # You can assume that the animal at index 0 will always be the "Penguin" hash.
 
 
-
+zoos["Bronx Zoo"][:animals][0][:count] += 1
 
 
 # Each of the zoos in the city just received 2 pandas. Alter the `zoos` information to reflect this new change:
 # In the array of animals under each Zoo, shovel this hash: { species: "Panda", count: 2 }
 
 
-
+zoos.each do |name, zoo_hash|
+    zoo_hash[:animals] << { species: "Panda", count: 2 }
+end
 
 
 # Return the number of Tigers at the Bronx Zoo.
@@ -87,7 +89,10 @@ zoos = {
 # First find the "Tiger" hash from the array of Animals at the Bronx Zoo and then, access the value under the ":count" key
 
 
-
+tiger_hash = zoos["Bronx Zoo"][:animals].find do |animal_hash|
+    animal_hash[:species] == "Tiger"
+end
+tiger_hash[:count]
 
 
 
@@ -96,19 +101,31 @@ zoos = {
 # Return the price associated with the `name_of_zoo` variable.
 
 # No matter which 1 of the 3 variable assignment you choose, your code should work:
-# name_of_zoo = "Bronx Zoo" => returns 25
+name_of_zoo = "Bronx Zoo" #=> returns 25
 # name_of_zoo = "Central Park Zoo" => returns 18
 # name_of_zoo = "Staten Island Zoo" => returns 10
 
 
+price = zoos[name_of_zoo][:price]
 
+# or
+price = 0
+zoos.each do |name, zoo_hash|
+    if name === name_of_zoo
+        price = zoo_hash[:price]
+    end
+end
+price
 
 
 # Return the sum of all the zoos' price. 
 # The return value should be: 53 
 
 
-
+total_zoo_prices = zoos.map do |name, zoo_hash|
+    zoo_hash[:price]
+end
+total_zoo_prices.sum
 
 
 # Return an array of all the locations where the zoos are located.
@@ -116,7 +133,9 @@ zoos = {
 # Consider which higher-level enumerable method(s) you'd use here.
 
 
-
+zoo_locations = zoos.map do |name, zoo_hash|
+    zoo_hash[:location]
+end
 
 
 # Find all the zoos that are open on the weekend. 
@@ -124,7 +143,9 @@ zoos = {
 # Consider which higher-level enumerable method(s) you'd use here.
 
 
-
+zoos_open_on_weekend = zoos.select do |name, zoo_hash|
+    zoo_hash[:weekend]
+end
 
 
 # Find the first zoo that are open on the weekend AND has the price under 20 dollars.
@@ -132,7 +153,9 @@ zoos = {
 # Consider which higher-level enumerable method(s) you'd use here.
 
 
-
+weekend_and_less_than_20 = zoos.find do |name, zoo_hash|
+    zoo_hash[:weekend] && zoo_hash[:price] < 20
+end
 
 
 # Find all the zoos where there are monkeys.
@@ -140,7 +163,11 @@ zoos = {
 # Consider which higher-level enumerable method(s) you'd use here.
 
 
-
+all_zoos_with_monkeys = zoos.select do |name, zoo_hash|
+    zoo_hash[:animals].find do |animal_hash|
+        animal_hash[:species] == "Monkey"
+    end
+end
 
 
 # Return an array of 3 numbers, each describing the total sum of the number of animals in a zoo.
@@ -148,7 +175,12 @@ zoos = {
 # Consider which higher-level enumerable method(s) you'd use here.
 
 
-
+total_numbers = zoos.map do |name, zoo_hash|
+    total_animal_counts = zoo_hash[:animals].map do |animal_hash|
+        animal_hash[:count]
+    end
+    total_animal_counts.sum
+end
 
 
 # Find the zoo with the highest count of any species in it. (Butterflies with the 12 count is the highest)
@@ -156,5 +188,12 @@ zoos = {
 # Consider which higher-level enumerable method(s) you'd use here.
 
 
+zoo_with_highest_species = zoos.max_by do |name, zoo_hash|
+    highest_animal_per_zoo = zoo_hash[:animals].max_by do |animal_hash|
+        animal_hash[:count]
+    end
+    highest_animal_per_zoo[:count]
+end
 
 
+binding.pry
